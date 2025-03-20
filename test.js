@@ -53,9 +53,6 @@ process.on("SIGINT", () => {
   process.exit(0);
 });
 
-// Run the tests once instead of five times
-runTests(testCases);
-
 // Run tests if executed in CI (GitHub Actions)
 if (process.env.CI) {
   console.log("Running tests in GitHub Actions...");
@@ -72,6 +69,7 @@ if (process.env.CI) {
     }
   })();
 }
+
 // function generateTestCases(numCases) {
 //   const testCases = [];
 //
