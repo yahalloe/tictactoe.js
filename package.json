@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node test.js",
-    "dev": "node index.js"
+    "dev": "echo this is a tictactoe game; node index.js"
   },
   "author": "yahallo",
   "license": "ISC",
