@@ -54,21 +54,21 @@ process.on("SIGINT", () => {
 });
 
 // Run tests if executed in CI (GitHub Actions)
-if (process.env.CI) {
-  console.log("Running tests in GitHub Actions...");
-  runTests(testCases);
-} else {
-  // Otherwise, run tests and allow user interaction
-  (async () => {
-    runTests(testCases);
-    try {
-      const move = await getUserInput();
-      console.log(`You entered: ${move}`);
-    } catch (error) {
-      console.log("Input process interrupted. Exiting...");
-    }
-  })();
-}
+// if (process.env.CI) {
+//   console.log("Running tests in GitHub Actions...");
+//   runTests(testCases);
+// } else {
+//   // Otherwise, run tests and allow user interaction
+//   (async () => {
+//     runTests(testCases);
+//     try {
+//       const move = await getUserInput();
+//       console.log(`You entered: ${move}`);
+//     } catch (error) {
+//       console.log("Input process interrupted. Exiting...");
+//     }
+//   })();
+// }
 
 // function generateTestCases(numCases) {
 //   const testCases = [];
