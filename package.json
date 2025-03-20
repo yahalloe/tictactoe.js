@@ -9,5 +9,8 @@
   "author": "yahallo",
   "license": "ISC",
   "description": "",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "inquirer": "^9.2.6"
+  }
 }
