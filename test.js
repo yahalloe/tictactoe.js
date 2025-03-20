@@ -34,10 +34,10 @@ const testCases = [
 runTests(testCases);
 
 // Handle SIGINT (Ctrl+C) gracefully
-process.on("SIGINT", () => {
-  console.log("\nProcess interrupted. Exiting gracefully...");
-  process.exit(0);
-});
+// process.on("SIGINT", () => {
+//   console.log("\nProcess interrupted. Exiting gracefully...");
+//   process.exit(0);
+// });
 
 // function generateTestCases(numCases) {
 //   const testCases = [];
