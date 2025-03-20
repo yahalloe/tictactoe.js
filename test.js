@@ -1,15 +1,25 @@
 import { checkWinner } from "./index.js";
 
+// Function to display the board
+function displayBoard(board) {
+  console.log(`
+    ${board[0]} ${board[1]} ${board[2]}
+    ${board[3]} ${board[4]} ${board[5]}
+    ${board[6]} ${board[7]} ${board[8]}
+  `);
+}
+
+// Function to run tests
 function runTests(testCases) {
   testCases.forEach(({ board, expected }, index) => {
     const result = checkWinner(board);
     console.log(`Test Case ${index + 1}:`);
+    displayBoard(board); // Display the board
     console.log(`Expected: ${expected}, Got: ${result}`);
     console.log(result === expected ? "✅ Passed" : "❌ Failed");
     console.log();
   });
 }
-
 // Example test cases
 const testCases = [
   {
