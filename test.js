@@ -33,12 +33,6 @@ const testCases = [
 // Run the tests once instead of five times
 runTests(testCases);
 
-// Handle SIGINT (Ctrl+C) gracefully
-// process.on("SIGINT", () => {
-//   console.log("\nProcess interrupted. Exiting gracefully...");
-//   process.exit(0);
-// });
-
 // function generateTestCases(numCases) {
 //   const testCases = [];
 //
