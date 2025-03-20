@@ -1,0 +1,13 @@
+{
+  "name": "practictac",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "dev": "node index.js"
+  },
+  "author": "yahallo",
+  "license": "ISC",
+  "description": "",
+  "type": "module"
+}
