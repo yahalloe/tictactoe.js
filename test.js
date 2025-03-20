@@ -1,18 +1,4 @@
-import inquirer from "inquirer";
 import { checkWinner } from "./index.js";
-
-async function getUserInput(moveFromArgs = null) {
-  if (moveFromArgs) return moveFromArgs; // Skip prompt if test argument provided
-
-  const answer = await inquirer.prompt([
-    {
-      type: "input",
-      name: "move",
-      message: "Pick a number between 1-9:",
-    },
-  ]);
-  return answer.move;
-}
 
 function runTests(testCases) {
   testCases.forEach(({ board, expected }, index) => {
@@ -52,23 +38,6 @@ process.on("SIGINT", () => {
   console.log("\nProcess interrupted. Exiting gracefully...");
   process.exit(0);
 });
-
-// Run tests if executed in CI (GitHub Actions)
-// if (process.env.CI) {
-//   console.log("Running tests in GitHub Actions...");
-//   runTests(testCases);
-// } else {
-//   // Otherwise, run tests and allow user interaction
-//   (async () => {
-//     runTests(testCases);
-//     try {
-//       const move = await getUserInput();
-//       console.log(`You entered: ${move}`);
-//     } catch (error) {
-//       console.log("Input process interrupted. Exiting...");
-//     }
-//   })();
-// }
 
 // function generateTestCases(numCases) {
 //   const testCases = [];
