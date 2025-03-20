@@ -47,6 +47,15 @@ const testCases = [
 // Run the tests once instead of five times
 runTests(testCases);
 
+// Handle SIGINT (Ctrl+C) gracefully
+process.on("SIGINT", () => {
+  console.log("\nProcess interrupted. Exiting gracefully...");
+  process.exit(0);
+});
+
+// Run the tests once instead of five times
+runTests(testCases);
+
 // Run tests if executed in CI (GitHub Actions)
 if (process.env.CI) {
   console.log("Running tests in GitHub Actions...");
@@ -55,10 +64,15 @@ if (process.env.CI) {
   // Otherwise, run tests and allow user interaction
   (async () => {
     runTests(testCases);
-    const move = await getUserInput();
-    console.log(`You entered: ${move}`);
+    try {
+      const move = await getUserInput();
+      console.log(`You entered: ${move}`);
+    } catch (error) {
+      console.log("Input process interrupted. Exiting...");
+    }
   })();
-} // function generateTestCases(numCases) {
+}
+// function generateTestCases(numCases) {
 //   const testCases = [];
 //
 //   for (let i = 0; i < numCases; i++) {
