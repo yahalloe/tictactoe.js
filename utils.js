@@ -1,3 +1,5 @@
+import { board } from "./index.js";
+
 export async function printBoard() {
   for (let i = 0; i < 9; i++) {
     if (i % 3 === 0 && i !== 0) {
