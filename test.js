@@ -1,4 +1,4 @@
-import { checkWinner } from "./index.js";
+import { checkWinner } from "./utils.js";
 
 // Function to display the board
 function displayBoard(board) {
