@@ -1,17 +1,26 @@
 import inquirer from "inquirer";
-import { checkWinner, switchPlayer, printBoard } from "./utils.js";
+import assert from "node:assert/strict";
+import { board, checkWinner, switchPlayer, printBoard } from "./utils.js";
 
-export let board = [
-  "[ ]",
-  "[ ]",
-  "[ ]",
-  "[ ]",
-  "[ ]",
-  "[ ]",
-  "[ ]",
-  "[ ]",
-  "[ ]",
-];
+let board = ["[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]"];
+
+async function printBoard() {
+  for (let i = 0; i < 9; i++) {
+    if (i % 3 === 0 && i !== 0) {
+      console.log(); // Move to the next line after every 3 cells
+    }
+    process.stdout.write(`${board[i]} `); // Print the cell value without a new line
+  }
+  console.log(); // Add a final new line after the board is printed
+}
+
+function switchPlayer(n) {
+  if (n == 0) {
+    return 1;
+  } else if (n == 1) {
+    return 0;
+  } else console.error("the player index is not 1 or 0");
+}
 
 let isWinner = false;
 
@@ -51,8 +60,8 @@ while (!isWinner) {
   isWinner = checkWinner(board);
 
   playerIndex = switchPlayer(playerIndex);
+  assert.strictEqual(typeof playerIndex, "number");
 
-  //check for draws
   if (board.every((cell) => cell !== "[ ]") && !isWinner) {
     console.log("tie!");
     break;

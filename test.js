@@ -1,5 +1,29 @@
 import { checkWinner } from "./utils.js";
 
+// Example test cases
+const testCases = [
+  {
+    board: ["[x]", "[x]", "[x]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]"],
+    expected: true,
+  }, // Row win
+  {
+    board: ["[o]", "[ ]", "[ ]", "[o]", "[ ]", "[ ]", "[o]", "[ ]", "[ ]"],
+    expected: true,
+  }, // Column win
+  {
+    board: ["[x]", "[o]", "[x]", "[o]", "[x]", "[o]", "[o]", "[x]", "[o]"],
+    expected: false,
+  }, // Draw
+  {
+    board: ["[x]", "[ ]", "[o]", "[ ]", "[x]", "[ ]", "[o]", "[ ]", "[x]"],
+    expected: true,
+  }, // Diagonal win
+  {
+    board: ["[x]", "[o]", "[x]", "[o]", "[x]", "[o]", "[x]", "[ ]", "[ ]"],
+    expected: true,
+  },
+];
+
 // Function to display the board
 function displayBoard(board) {
   console.log(`
@@ -20,25 +44,6 @@ function runTests(testCases) {
     console.log();
   });
 }
-// Example test cases
-const testCases = [
-  {
-    board: ["[x]", "[x]", "[x]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]"],
-    expected: true,
-  }, // Row win
-  {
-    board: ["[o]", "[ ]", "[ ]", "[o]", "[ ]", "[ ]", "[o]", "[ ]", "[ ]"],
-    expected: true,
-  }, // Column win
-  {
-    board: ["[x]", "[o]", "[x]", "[o]", "[x]", "[o]", "[o]", "[x]", "[o]"],
-    expected: false,
-  }, // Draw
-  {
-    board: ["[x]", "[ ]", "[o]", "[ ]", "[x]", "[ ]", "[o]", "[ ]", "[x]"],
-    expected: true,
-  }, // Diagonal win
-];
 
 // Run the tests once instead of five times
 runTests(testCases);
