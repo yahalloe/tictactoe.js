@@ -2,7 +2,6 @@ import inquirer from 'inquirer'
 import assert from 'node:assert/strict'
 import { checkWinner } from './utils.js'
 
-
 let board = ['[ ]', '[ ]', '[ ]', '[ ]', '[ ]', '[ ]', '[ ]', '[ ]', '[ ]']
 
 async function printBoard() {
@@ -44,9 +43,10 @@ let question = {
 }
 
 let isWinner = false
-
 const player = ['[x]', '[o]']
 let playerIndex = 0
+
+
 await printBoard()
 
 while (!isWinner) {
