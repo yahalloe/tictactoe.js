@@ -12,9 +12,9 @@ export function checkWinner(board) {
     [2, 5, 8], // columns
     [0, 4, 8],
     [2, 4, 6], // diagonals
-  ];
+  ]
   return winningCombinations.some(
     ([a, b, c]) =>
-      board[a] === board[b] && board[b] === board[c] && board[a] !== "[ ]",
-  );
+      board[a] === board[b] && board[b] === board[c] && board[a] !== '[ ]',
+  )
 }

@@ -1,28 +1,28 @@
-import { checkWinner } from "./utils.js";
+import { checkWinner } from './utils.js'
 
 // Example test cases
 const testCases = [
   {
-    board: ["[x]", "[x]", "[x]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]"],
+    board: ['[x]', '[x]', '[x]', '[ ]', '[ ]', '[ ]', '[ ]', '[ ]', '[ ]'],
     expected: true,
   }, // Row win
   {
-    board: ["[o]", "[ ]", "[ ]", "[o]", "[ ]", "[ ]", "[o]", "[ ]", "[ ]"],
+    board: ['[o]', '[ ]', '[ ]', '[o]', '[ ]', '[ ]', '[o]', '[ ]', '[ ]'],
     expected: true,
   }, // Column win
   {
-    board: ["[x]", "[o]", "[x]", "[o]", "[x]", "[o]", "[o]", "[x]", "[o]"],
+    board: ['[x]', '[o]', '[x]', '[o]', '[x]', '[o]', '[o]', '[x]', '[o]'],
     expected: false,
   }, // Draw
   {
-    board: ["[x]", "[ ]", "[o]", "[ ]", "[x]", "[ ]", "[o]", "[ ]", "[x]"],
+    board: ['[x]', '[ ]', '[o]', '[ ]', '[x]', '[ ]', '[o]', '[ ]', '[x]'],
     expected: true,
   }, // Diagonal win
   {
-    board: ["[x]", "[o]", "[x]", "[o]", "[x]", "[o]", "[x]", "[ ]", "[ ]"],
+    board: ['[x]', '[o]', '[x]', '[o]', '[x]', '[o]', '[x]', '[ ]', '[ ]'],
     expected: true,
   },
-];
+]
 
 // Function to display the board
 function displayBoard(board) {
@@ -30,23 +30,23 @@ function displayBoard(board) {
     ${board[0]} ${board[1]} ${board[2]}
     ${board[3]} ${board[4]} ${board[5]}
     ${board[6]} ${board[7]} ${board[8]}
-  `);
+  `)
 }
 
 // Function to run tests
 function runTests(testCases) {
   testCases.forEach(({ board, expected }, index) => {
-    const result = checkWinner(board);
-    console.log(`Test Case ${index + 1}:`);
-    displayBoard(board); // Display the board
-    console.log(`Expected: ${expected}, Got: ${result}`);
-    console.log(result === expected ? "✅ Passed" : "❌ Failed");
-    console.log();
-  });
+    const result = checkWinner(board)
+    console.log(`Test Case ${index + 1}:`)
+    displayBoard(board) // Display the board
+    console.log(`Expected: ${expected}, Got: ${result}`)
+    console.log(result === expected ? '✅ Passed' : '❌ Failed')
+    console.log()
+  })
 }
 
 // Run the tests once instead of five times
-runTests(testCases);
+runTests(testCases)
 
 // function generateTestCases(numCases) {
 //   const testCases = [];
