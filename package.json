@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node test.js",
-    "dev": "echo this is a tictactoe game; node index.js",
+    "dev": "echo this is a tictactoe game; node src/index.js",
     "lint": "npx eslint"
   },
   "author": "yahallo",

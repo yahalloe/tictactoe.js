@@ -1,6 +1,8 @@
 import inquirer from 'inquirer'
 import assert from 'node:assert/strict'
-import checkWinner from 'utils.js'
+import { checkWinner } from './utils.js'
+
+
 let board = ['[ ]', '[ ]', '[ ]', '[ ]', '[ ]', '[ ]', '[ ]', '[ ]', '[ ]']
 
 async function printBoard() {
@@ -21,6 +23,25 @@ function switchPlayer(n) {
     return 0
   } else console.error('the player index is not 1 or 0')
 }
+/**
+ * input prompt for inquirer.
+ * @returns {string}
+ */
+let question = {
+  type: 'input',
+  name: 'position',
+  message: 'Pick a number between 1-9:',
+  validate: (input) => {
+    if (input === 'q') {
+      return true
+    }
+    const pos = parseInt(input) - 1
+    if (isNaN(pos) || pos < 0 || pos > 8 || board[pos] !== '[ ]') {
+      return 'Invalid input. Choose an empty cell between 1-9.'
+    }
+    return true
+  },
+}
 
 let isWinner = false
 
@@ -29,23 +50,7 @@ let playerIndex = 0
 await printBoard()
 
 while (!isWinner) {
-  const answer = await inquirer.prompt([
-    {
-      type: 'input',
-      name: 'position',
-      message: 'Pick a number between 1-9:',
-      validate: (input) => {
-        if (input === 'q') {
-          return true
-        }
-        const pos = parseInt(input) - 1
-        if (isNaN(pos) || pos < 0 || pos > 8 || board[pos] !== '[ ]') {
-          return 'Invalid input. Choose an empty cell between 1-9.'
-        }
-        return true
-      },
-    },
-  ])
+  const answer = await inquirer.prompt([question])
 
   if (answer.position === 'q') {
     console.log('bye bye!')
@@ -53,11 +58,14 @@ while (!isWinner) {
   }
 
   const position = parseInt(answer.position) - 1
+  assert.strictEqual(typeof position, 'number')
+
   board[position] = player[playerIndex] // Update the board
 
   console.log('\nUpdated Board:')
   await printBoard()
   isWinner = checkWinner(board)
+  assert.strictEqual(typeof isWinner, 'boolean')
 
   playerIndex = switchPlayer(playerIndex)
   assert.strictEqual(typeof playerIndex, 'number')
@@ -65,10 +73,6 @@ while (!isWinner) {
   if (board.every((cell) => cell !== '[ ]') && !isWinner) {
     console.log('tie!')
     break
-  }
-
-  if (isWinner) {
-    console.log('hello world')
   }
 
   if (isWinner) {
