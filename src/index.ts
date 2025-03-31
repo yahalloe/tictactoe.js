@@ -71,14 +71,14 @@ await printBoard(playerIndex);
 
 while (!isWinner) {
   const { answer } = await inquirer.prompt([question]);
-  if (answer == "q") {
+  if (answer === "q") {
     console.log("bye bye!");
     break;
   }
 
-  let position = answer;
-  position--;
-  assert.strictEqual(typeof position, "number");
+  let index = answer;
+  assert.strictEqual(typeof index, "number");
+  index--;
 
   board[position] = player[playerIndex]; // Update the board
 
