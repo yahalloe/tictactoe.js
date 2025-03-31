@@ -2,7 +2,7 @@
  * Checks if there's a winner.
  * @returns {boolean} true if there's a winner, otherwise false.
  */
-export function checkWinner(board) {
+export function checkWinner(board: string[]): boolean {
   const winningCombinations = [
     [0, 1, 2],
     [3, 4, 5],

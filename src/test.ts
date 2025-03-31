@@ -1,7 +1,12 @@
 import { checkWinner } from './checkWinner.js'
 
+interface TestCase {
+  board: string[];
+  expected: boolean;
+}
+
 // Example test cases
-const testCases = [
+const testCases: TestCase[] = [
   {
     board: ['[x]', '[x]', '[x]', '[ ]', '[ ]', '[ ]', '[ ]', '[ ]', '[ ]'],
     expected: true,
@@ -25,7 +30,7 @@ const testCases = [
 ]
 
 // Function to display the board
-function displayBoard(board) {
+function displayBoard(board: string[]): void {
   console.log(`
     ${board[0]} ${board[1]} ${board[2]}
     ${board[3]} ${board[4]} ${board[5]}
@@ -34,9 +39,9 @@ function displayBoard(board) {
 }
 
 // Function to run tests
-function runTests(testCases) {
+function runTests(testCases: TestCase[]): void {
   testCases.forEach(({ board, expected }, index) => {
-    const result = checkWinner(board)
+    const result: boolean = checkWinner(board)
     console.log(`Test Case ${index + 1}:`)
     displayBoard(board) // Display the board
     console.log(`Expected: ${expected}, Got: ${result}`)
@@ -44,6 +49,10 @@ function runTests(testCases) {
     console.log()
   })
 }
+
+// Run tests
+runTests(testCases)
+
 
 // Run the tests once instead of five times
 runTests(testCases)

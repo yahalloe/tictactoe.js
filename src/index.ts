@@ -6,7 +6,7 @@ import { checkWinner } from "./checkWinner.js";
 
 let board = ["[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]"];
 
-async function printBoard(currentPlayer) {
+async function printBoard(currentPlayer: number) {
   for (let i = 0; i < 9; i++) {
     if (i % 3 === 0 && i !== 0) {
       console.log(); // Move to the next line after every 3 cells
@@ -22,12 +22,13 @@ async function printBoard(currentPlayer) {
   console.log(); // Add a final new line after the board is printed
 }
 
-function switchPlayer(n) {
+function switchPlayer(n: number): number{
   if (n === 0) {
     return 1;
   } else if (n === 1) {
     return 0;
   } else console.error("the player index is not 1 or 0");
+  return NaN;
 }
 /**
  * input prompt for inquirer.
@@ -37,7 +38,7 @@ let question = {
   type: "input",
   name: "answer",
   message: "Pick a number between 1-9:",
-  validate: (input) => {
+  validate: (input :string) => {
     return new Promise((resolve) => {
       if (input === "q") {
         resolve(true);
@@ -64,7 +65,7 @@ let question = {
 
 let isWinner = false;
 const player = ["[x]", "[o]"];
-let playerIndex = 0;
+let playerIndex: number = 0;
 
 console.log("press q to quit.");
 await printBoard(playerIndex);
@@ -76,11 +77,11 @@ while (!isWinner) {
     break;
   }
 
-  let index = answer;
+  let index = Number(answer);
   assert.strictEqual(typeof index, "number");
   index--;
 
-  board[position] = player[playerIndex]; // Update the board
+  board[index] = player[playerIndex]; // Update the board
 
   playerIndex = switchPlayer(playerIndex);
   assert.strictEqual(typeof playerIndex, "number");
