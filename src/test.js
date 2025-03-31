@@ -1,4 +1,4 @@
-import { checkWinner } from './utils.js'
+import { checkWinner } from './checkWinner.js'
 
 // Example test cases
 const testCases = [

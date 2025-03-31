@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js",
+    "test": "node src/test.js",
     "dev": "echo this is a tictactoe game; node src/index.js",
     "lint": "npx eslint"
   },
