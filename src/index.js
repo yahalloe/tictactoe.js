@@ -1,15 +1,22 @@
 import inquirer from "inquirer";
 import assert from "node:assert/strict";
+import chalk from "chalk";
+
 import { checkWinner } from "./checkWinner.js";
 
 let board = ["[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]"];
 
-async function printBoard() {
+async function printBoard(currentPlayer) {
   for (let i = 0; i < 9; i++) {
     if (i % 3 === 0 && i !== 0) {
       console.log(); // Move to the next line after every 3 cells
     }
-    process.stdout.write(`${board[i]} `); // Print the cell value without a new line because
+    if (currentPlayer === 0) {
+      process.stdout.write(`${chalk.blue(board[i])}`); // Print the cell value without a new line because
+    } else {
+      process.stdout.write(`${chalk.red(board[i])}`); // Print the cell value without a new line because
+    }
+
     // console.log has a new line at the end.
   }
   console.log(); // Add a final new line after the board is printed
@@ -31,19 +38,27 @@ let question = {
   name: "answer",
   message: "Pick a number between 1-9:",
   validate: (input) => {
-    if (input === "q") {
-      return true;
-    }
-    const convertedInput = Number(input);
-    if (
-      isNaN(convertedInput) ||
-      convertedInput < 0 ||
-      convertedInput > 8 ||
-      board[convertedInput - 1] !== "[ ]"
-    ) {
-      return "Invalid input. Choose an empty cell between 1-9.";
-    }
-    return true;
+    return new Promise((resolve) => {
+      if (input === "q") {
+        resolve(true);
+        return;
+      }
+
+      const convertedInput = Number(input);
+
+      setTimeout(() => {
+        if (
+          isNaN(convertedInput) ||
+          convertedInput < 1 || // Fixed: Should be 1-9, not 0-8
+          convertedInput > 9 ||
+          board[convertedInput - 1] !== "[ ]"
+        ) {
+          resolve("Invalid input. Choose an empty cell between 1-9.");
+        } else {
+          resolve(true);
+        }
+      }, 0); // Delay
+    });
   },
 };
 
@@ -51,7 +66,8 @@ let isWinner = false;
 const player = ["[x]", "[o]"];
 let playerIndex = 0;
 
-await printBoard();
+console.log("press q to quit.");
+await printBoard(playerIndex);
 
 while (!isWinner) {
   const { answer } = await inquirer.prompt([question]);
@@ -66,22 +82,24 @@ while (!isWinner) {
 
   board[position] = player[playerIndex]; // Update the board
 
-  console.log("\nUpdated Board:");
-  await printBoard();
-  isWinner = checkWinner(board);
-  assert.strictEqual(typeof isWinner, "boolean");
-
   playerIndex = switchPlayer(playerIndex);
   assert.strictEqual(typeof playerIndex, "number");
 
+  console.log("\nUpdated Board:");
+  await printBoard(playerIndex);
+
+  isWinner = checkWinner(board);
+  assert.strictEqual(typeof isWinner, "boolean");
+
+  // loop the board values and check for draw.
   if (board.every((cell) => cell !== "[ ]") && !isWinner) {
-    console.log("tie!");
+    console.log(`${chalk.gray("tie!")}🥹`);
     break;
   }
 
   if (isWinner) {
-    if (playerIndex === 1) console.log("\n🎉 X won! 🎉");
-    else console.log("\n🎉 O won! 🎉");
+    if (playerIndex === 1) console.log(`\n🎉 ${chalk.green("X won!")} 🎉`);
+    else console.log(`\n🎉 ${chalk.green("O won!")} 🎉`);
     break;
   }
 }
