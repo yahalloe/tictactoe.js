@@ -29,5 +29,5 @@ jobs:
         run: npx tsc
 
       - name: Run Tests
-        run: node ./dist/test.js
+        run: node ./src/dist/test.js
 
