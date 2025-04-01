@@ -23,4 +23,4 @@ jobs:
         run: npm install
 
       - name: Run Tests
-        run: node test.js
+        run: node ./src/dist/test.js

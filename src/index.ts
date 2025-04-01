@@ -4,7 +4,7 @@ import chalk from "chalk";
 
 import { checkWinner } from "./checkWinner.js";
 
-let board = ["[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]"];
+let board: string[] = ["[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]"];
 
 async function printBoard(currentPlayer: number) {
   for (let i = 0; i < 9; i++) {
@@ -34,7 +34,7 @@ function switchPlayer(n: number): number{
  * input prompt for inquirer.
  * @returns {string} '1' - '9' || 'q'.
  */
-let question = {
+let question: object = {
   type: "input",
   name: "answer",
   message: "Pick a number between 1-9:",
@@ -63,8 +63,8 @@ let question = {
   },
 };
 
-let isWinner = false;
-const player = ["[x]", "[o]"];
+let isWinner: boolean = false;
+const player: string[] = ["[x]", "[o]"];
 let playerIndex: number = 0;
 
 console.log("press q to quit.");
@@ -81,7 +81,7 @@ while (!isWinner) {
   assert.strictEqual(typeof index, "number");
   index--;
 
-  board[index] = player[playerIndex]; // Update the board
+  board[index] = player[playerIndex]; // Update the board's content
 
   playerIndex = switchPlayer(playerIndex);
   assert.strictEqual(typeof playerIndex, "number");
