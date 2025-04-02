@@ -1,4 +1,4 @@
-import { checkWinner } from './checkWinner.js'
+import checkWinner from './checkWinner.js'
 
 interface TestCase {
   board: string[];

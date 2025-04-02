@@ -2,7 +2,7 @@ import inquirer from "inquirer";
 import assert from "node:assert/strict";
 import chalk from "chalk";
 
-import { checkWinner } from "./checkWinner.js";
+import checkWinner from "./checkWinner.js";
 
 let board: string[] = ["[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]"];
 
@@ -25,9 +25,15 @@ async function printBoard(currentPlayer: number) {
 function switchPlayer(n: number): number{
   if (n === 0) {
     return 1;
-  } else if (n === 1) {
+  } 
+  
+  else if (n === 1) {
     return 0;
-  } else console.error("the player index is not 1 or 0");
+  } 
+
+  else 
+    console.error("the player index is not 1 or 0");
+
   return NaN;
 }
 /**
